@@ -1,0 +1,18 @@
+<h1>注文履歴一覧</h1>
+
+<% @homes.each do |home| %>
+
+<h2>購入日時</h2>
+<p><%= home.created_at %></p>
+
+<%= link_to home.created_at, edit_admin_item_path(home.id) %>
+
+<h2>購入者</h2>
+<p><%= home.customer.last_name %><%= home.customer.first_name %></p>
+
+<h2>注文個数</h2>
+<p><%= home.tyumon%></p>
+
+<%end%>
+
+

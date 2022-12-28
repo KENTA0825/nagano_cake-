@@ -1,0 +1,15 @@
+<h3><%= @item.name %></h3>
+
+<%= form_with model: @cart_item, url:cart_items_path do |f| %>
+
+<h6><%= @item.introduction %></h6>
+
+<h5><%= @item.price %></h5> 
+
+<%= f.hidden_field :item_id, value: @item.id %>
+
+<%= f.select :amount, *[1..10], selected: 1 %>
+
+<%= f.submit "カートに入れる" %>
+
+<% end %>

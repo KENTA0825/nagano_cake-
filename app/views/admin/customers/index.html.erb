@@ -1,0 +1,17 @@
+<h1>会員一覧</h1>
+
+<% @customers.each do |customer| %>
+
+  <p>会員ID</p>
+  <span><%= item.id%></span>
+  
+  <p>氏名</p>
+  <span><%= item.name%></span>
+  
+  <p>メールアドレス</p>
+  <span><%= item.price%></span>
+  
+  <p>ステータス</p>
+  <span><%= item.genre.name%></span>
+  
+<% end %>

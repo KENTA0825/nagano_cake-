@@ -1,16 +1,132 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoCake</title>
+    <title>nagano_cake</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+    <script src="https://kit.fontawesome.com/82c6ceb504.js" crossorigin="anonymous"></script>
+    
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
-  </body>
+      
+      
+  <header>
+    
+    
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <span>LOGO</span>
+        </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          
+          <% if admin_signed_in? %>
+          <li>
+          <%= link_to admin_customers_path,class:'nav-link text-light' do %>
+          </i>
+             会員一覧 
+         <% end %>
+         
+         <li>
+          <%= link_to admin_path,class:'nav-link text-light' do %>
+         </i>
+             注文履歴一覧
+         <% end %>
+         
+         <li>
+          <%= link_to admin_genres_path,class:'nav-link text-light' do %>
+         </i>
+             ジャンル一覧
+         <% end %>
+         
+         <li>
+          <%= link_to destroy_admin_session_path,method: :delete,class:'nav-link text-light' do %>
+         </i>
+             ログアウト
+         <% end %>
+         
+      
+         
+         <% else %>
+          
+          <li>
+          <%= link_to admin_path,class:'nav-link text-light' do %>
+          </i>
+             About 
+         <% end %>
+         </li>
+      
+          <li>
+          <%= link_to items_path,class:'nav-link text-light' do %>
+          </i>
+             商品一覧 
+         <% end %>
+         </li>
+           
+           <li>
+          <%= link_to new_item_path,class:'nav-link text-light' do %>
+           </i>
+             新規登録
+          <% end %>
+           </li>
+          
+            
+          <li>
+          <%= link_to new_customer_session_path,class:'nav-link text-light' do %>
+          </i>
+            ログイン
+          <% end %>
+          </li>
+          
+          <li>
+          <%= link_to destroy_customer_session_path,method: :delete,class:'nav-link text-light' do %>
+           <i class="fas fa-sign-out-alt"></i>
+             Log out
+         <% end %>
+          
+        <% end %>
+         
+        </ul>
+      </div>
+    </div>
+  </nav>
+　　　
+　　<form>
+　　<input type="search" name="search" placeholder="検索キーワードを入力してください”>
+　　<input type="submit" name="submit" value="Search">
+　　</form>　
+　　　
+    
+  </header>
+  
+  <div class="flash-notifications">
+     <% flash.each do |key, value| %>
+     <%= content_tag(:div, value, class: key) %>
+     <% end %>
+  </div>
+  
+  <p id="notice"></p>
+  <%= yield %>
+  
+  <footer>
+  <div class="container mt-5">
+  	<div class="row">
+    	<div class="mx-auto">
+    		
+    	</div>
+    </div>
+  </div>
+  </footer>
+
+</body>
+
 </html>

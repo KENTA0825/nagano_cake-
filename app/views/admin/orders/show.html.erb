@@ -1,0 +1,28 @@
+<h1>注文履歴詳細</h1>
+
+<% @homes.each do |home| %>
+
+<h2>注文日</h2>
+<p><%= home.created_at %></p>
+
+<%= link_to home.created_at, edit_admin_item_path(home.id) %>
+
+<h2>配送先</h2>
+<p><%= addresses　%></p>
+
+<h2>支払い方法</h2>
+<p><%= home.payment_method %></p>
+
+<h2>注文個数</h2>
+<p><%= home.tyumon %></p>
+
+<h2>商品合計</h2>
+<p><%= home.price %></p>
+
+<h2>送料</h2>
+<p><%= home.shipping_cost %></p>
+
+<h2>送料</h2>
+<p><%= home.total_payment %></p>
+
+<%end%>
