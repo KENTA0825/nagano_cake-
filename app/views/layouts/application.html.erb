@@ -31,21 +31,21 @@
           
           <% if admin_signed_in? %>
           <li>
-          <%= link_to admin_customers_path,class:'nav-link text-light' do %>
+          <%= link_to admin_items_path,class:'nav-link text-light' do %>
           </i>
-             会員一覧 
+             商品一覧 
+         <% end %>
+         
+         <li>
+          <%= link_to admin_customers_path,class:'nav-link text-light' do %>
+         </i>
+             会員一覧
          <% end %>
          
          <li>
           <%= link_to admin_path,class:'nav-link text-light' do %>
          </i>
-             注文履歴一覧
-         <% end %>
-         
-         <li>
-          <%= link_to admin_genres_path,class:'nav-link text-light' do %>
-         </i>
-             ジャンル一覧
+            　注文履歴一覧
          <% end %>
          
          <li>
@@ -56,12 +56,12 @@
          
       
          
-         <% else %>
+         <% elsif customer_signed_in? %>
           
           <li>
-          <%= link_to admin_path,class:'nav-link text-light' do %>
+          <%= link_to customers_my_page_path,class:'nav-link text-light' do %>
           </i>
-             About 
+             マイページ 
          <% end %>
          </li>
       
@@ -73,24 +73,39 @@
          </li>
            
            <li>
-          <%= link_to new_item_path,class:'nav-link text-light' do %>
+          <%= link_to cart_items_path,class:'nav-link text-light' do %>
            </i>
-             新規登録
+             カート
           <% end %>
            </li>
           
-            
           <li>
-          <%= link_to new_customer_session_path,class:'nav-link text-light' do %>
+          <%= link_to destroy_customer_session_path,method: :delete,class:'nav-link text-light' do %>
           </i>
-            ログイン
+            ログアウト
           <% end %>
           </li>
           
+          <% else %>
+          
           <li>
-          <%= link_to destroy_customer_session_path,method: :delete,class:'nav-link text-light' do %>
-           <i class="fas fa-sign-out-alt"></i>
-             Log out
+          <%= link_to about_path,class:'nav-link text-light' do %>
+             About
+         <% end %>
+         
+         <li>
+          <%= link_to items_path,class:'nav-link text-light' do %>
+             商品一覧
+         <% end %>
+         
+         <li>
+          <%= link_to new_customer_registration_path,class:'nav-link text-light' do %>
+             新規登録
+         <% end %>
+         
+         <li>
+          <%= link_to new_customer_session_path,class:'nav-link text-light' do %>
+             ログイン
          <% end %>
           
         <% end %>

@@ -9,7 +9,8 @@ class Admin::OrdersController < ApplicationController
  end
  
   def show
-    @order = current_customer
+    @order = Order.find(params[:id])
+   
   end
   
   def edit
@@ -20,11 +21,11 @@ class Admin::OrdersController < ApplicationController
     @order = current_customer
     if @order.update(customer_params)
       
-      redirect_to admin_item_path(@)
+      redirect_to admin_item_path(@order)
     else
       render 'customers/edit'
     end
- end
+  end
 
  
  # 投稿データの保存

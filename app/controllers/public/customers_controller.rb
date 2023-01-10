@@ -20,7 +20,7 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     if @customer.update(is_deleted: true)
       reset_session
-      redirect_to new_customer_registration_path
+      redirect_to root_path
     else
       render 'customers/edit'
     end
@@ -31,11 +31,11 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     if @customer.update(customer_params)
       
-      redirect_to admin_item_path(@customer)
+      redirect_to customers_my_page_path
     else
       render 'customers/edit'
     end
- end
+  end
 
  
  # 投稿データの保存

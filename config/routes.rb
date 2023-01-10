@@ -15,7 +15,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 scope module: :public do
-   get"/"=>"homes#top"
+   root to: 'homes#top'
    get"/about"=>"homes#about"
    resources :genres
    resources :items
@@ -31,7 +31,7 @@ scope module: :public do
    get"/orders/complete"=>"orders#complete"
    post"/orders"=>"orders#create"
    get"/orders"=>"orders#index"
-   get"/orders/:id"=>"orders#show"
+   get"/orders/:id"=>"orders#show",as: "orders_show"
    
    delete"/cart_items/destroy_all"=>"cart_items#destroy_all"
    resources :cart_items

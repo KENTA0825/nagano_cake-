@@ -22,8 +22,9 @@
           <%= order_detail.item.name %>
         <% end %>
       </td>
-      <td><%= order.total_payment %></td>
-      <td><%= link_to "表示する", orders_path(order) %></td>
+      <td><%= order.total_payment %>
+      </td>
+      <td><%= link_to "表示する", orders_show_path(order) %></td>
     </tr>
   <% end %>
  <tr>

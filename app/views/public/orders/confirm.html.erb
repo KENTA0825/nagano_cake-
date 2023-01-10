@@ -1,4 +1,4 @@
-<h5>注文情報入力</h5>
+<h5>注文情報確認</h5>
 <table border=”1″>
   <thead>
     <tr>
@@ -53,5 +53,6 @@
   <%= f.hidden_field :payment_method %>
   <%= f.hidden_field :address %>
   <%= f.hidden_field :name %>
-  <%= f.submit "情報入力に進む"%>
+  <%= f.hidden_field :total_payment,value: @total+800 %>
+  <%= f.submit "注文を確定する"%>
 <% end %>

@@ -16,9 +16,21 @@ class Public::CartItemsController < ApplicationController
  end
     
  def create
-    @cart_item =current_customer.cart_items.build(cart_item_params)
      
+    @item= Item.find(params[:cart_item][:item_id]) 
+    @cart_item =current_customer.cart_items
+    @cart_item.each do |item| 
+    if @item.id ==item.item_id
+         @same= item.amount.to_i+params[:cart_item][:amount].to_i
+         item.update(amount: @same)
+         redirect_to cart_items_path
+         return 0
+    end 
+   end
+    @cart_item =current_customer.cart_items.build(cart_item_params)
     @cart_item.save
+    
+    
     redirect_to cart_items_path
  end
  

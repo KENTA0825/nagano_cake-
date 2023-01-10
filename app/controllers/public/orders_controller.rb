@@ -10,23 +10,29 @@ class Public::OrdersController < ApplicationController
  
  def show
     @order = Order.find(params[:id])  
+    
+    
  end
-  
-  
-  
 
- 
+
  # 投稿データの保存
  def create
     @order = Order.new(order_params)
-     
-    @order.save
+    @order.customer_id=current_customer.id
+    @order.save!
+   
+    
+    current_customer.cart_items.each do |cart_item| 
+     order_detail=OrderDetail.new(item_id: cart_item.item.id,order_id: @order.id,price: cart_item.item.price,amount: cart_item.amount)
+     order_detail.save!
+   end
+   current_customer.cart_items.destroy_all
     redirect_to orders_complete_path
  end
  
  def confirm
   
-  @cart_items=current_customer.cart_items.all  
+  @cart_items=current_customer.cart_items
      
   @order = Order.new(order_params)
   
@@ -57,7 +63,7 @@ class Public::OrdersController < ApplicationController
 
  private
  def order_params
-   params.require(:order).permit(:payment_method, :postal_code, :address, :name)
+   params.require(:order).permit(:payment_method, :postal_code, :address, :name,:total_payment)
  end
     
   

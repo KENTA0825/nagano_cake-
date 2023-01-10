@@ -1,28 +1,26 @@
-<h1>注文履歴詳細</h1>
+<h4>注文履歴詳細</h4>
 
-<% @homes.each do |home| %>
+<h4>購入者</h4>
+<p><%= @order.customer.last_name + " " + @order.customer.first_name %></p>
 
-<h2>注文日</h2>
-<p><%= home.created_at %></p>
+<h4>注文日</h4>
+<p><%= @order.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %></p>
 
-<%= link_to home.created_at, edit_admin_item_path(home.id) %>
+<h4>配送先</h4>
+<p><%= @order.postal_code + @order.address + @order.customer.last_name + @order.customer.first_name %></p>
 
-<h2>配送先</h2>
-<p><%= addresses　%></p>
+<h4>支払い方法</h4>
+<p><%= @order.payment_method_i18n %></p>
 
-<h2>支払い方法</h2>
-<p><%= home.payment_method %></p>
+<h4>注文個数</h4>
+<p><%= @order.tyumon %></p>
 
-<h2>注文個数</h2>
-<p><%= home.tyumon %></p>
+<h4>商品合計</h4>
+<p><%= @order.price_sum %></p>
 
-<h2>商品合計</h2>
-<p><%= home.price %></p>
+<h4>送料</h4>
+<p><%= @order.shipping_cost %></p>
 
-<h2>送料</h2>
-<p><%= home.shipping_cost %></p>
+<h4>請求金額合計</h4>
+<p><%= @order.price_sum.to_i + @order.shipping_cost.to_i %></p>
 
-<h2>送料</h2>
-<p><%= home.total_payment %></p>
-
-<%end%>

@@ -1,18 +1,32 @@
 <h1>注文履歴一覧</h1>
 
+<table class="table">
+
+<tr>
+  
+<th>購入日時</th>
+
+<th>購入者</th>
+
+<th>注文個数</th>
+
+</tr>
+
 <% @homes.each do |home| %>
 
-<h2>購入日時</h2>
-<p><%= home.created_at %></p>
+<tr>
+  
+<td><%= link_to home.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒"), admin_order_path(home.id) %></td>
 
-<%= link_to home.created_at, edit_admin_item_path(home.id) %>
 
-<h2>購入者</h2>
-<p><%= home.customer.last_name %><%= home.customer.first_name %></p>
+<td><%= home.customer.last_name %><%= home.customer.first_name %></td>
 
-<h2>注文個数</h2>
-<p><%= home.tyumon%></p>
+<td><%= home.tyumon %></td>
 
-<%end%>
+</tr>
+
+<% end %>
+
+</table>
 
 
